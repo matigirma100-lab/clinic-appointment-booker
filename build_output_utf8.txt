@@ -1,0 +1,263 @@
+
+> clinic-appointment-booker@0.1.0 build
+> next build
+
+   Gû¦ Next.js 15.5.12
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ G£ô Compiled successfully in 3.6s
+   Linting and checking validity of types ...
+node.exe : 
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : 
+NotSpecified: (:St    
+ring) [], RemoteExcept 
+   ion
+    + 
+FullyQualifiedErrorI   
+ d : NativeCommandError
+ 
+Failed to compile.
+
+./app/doctor/[name]/Doc
+torScheduleClient.tsx
+11:10  Warning: 
+'loading' is assigned 
+a value but never 
+used.  @typescript-esli
+nt/no-unused-vars
+13:27  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+
+./app/list/ListClient.t
+sx
+29:10  Warning: 
+'loading' is assigned 
+a value but never 
+used.  @typescript-esli
+nt/no-unused-vars
+31:27  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+
+./app/page.tsx
+5:10  Warning: 
+'GlassCard' is defined 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+10:3  Warning: 
+'clinic' is defined 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+14:10  Warning: 'Plus' 
+is defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+17:10  Warning: 
+'BookingModalProvider' 
+is defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+27:27  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+132:9  Warning: 
+'noShows' is assigned 
+a value but never 
+used.  @typescript-esli
+nt/no-unused-vars
+148:9  Warning: 
+'slots' is assigned a 
+value but never used.  
+@typescript-eslint/no-u
+nused-vars
+148:40  Warning: 
+'index' is defined but 
+never used.  @typescrip
+t-eslint/no-unused-vars
+
+./app/patients/Patients
+Client.tsx
+4:40  Warning: 'Users' 
+is defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+4:47  Warning: 
+'MoreHorizontal' is 
+defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+6:10  Warning: 'cn' is 
+defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+
+./app/reports/ReportsCl
+ient.tsx
+8:3  Warning: 'Line' 
+is defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+9:3  Warning: 
+'LineChart' is defined 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+109:9  Warning: 'top' 
+is assigned a value 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+
+./app/settings/Settings
+Client.tsx
+4:81  Warning: 
+'Pencil' is defined 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+88:21  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+131:21  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+177:58  Error: `'` can 
+be escaped with 
+`&apos;`, `&lsquo;`, 
+`&#39;`, `&rsquo;`.  re
+act/no-unescaped-entiti
+es
+
+./components/DoctorTime
+line.tsx
+84:3  Warning: 
+'doctor' is defined 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+
+./components/EditAppoin
+tmentModal.tsx
+254:19  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+
+./components/PatientMod
+al.tsx
+3:10  Warning: 
+'useMemo' is defined 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+206:19  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+
+./components/ReminderMo
+dal.tsx
+5:32  Warning: 'Clock' 
+is defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+34:6  Warning: React 
+Hook useEffect has a 
+missing dependency: 
+'generateReminder'. 
+Either include it or 
+remove the dependency 
+array.  react-hooks/exh
+austive-deps
+49:14  Warning: 'err' 
+is defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+78:14  Warning: 'err' 
+is defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+
+./components/SidebarNav
+igation.tsx
+8:10  Warning: 
+'GlassCard' is defined 
+but never used.  @types
+cript-eslint/no-unused-
+vars
+
+./components/StatCard.t
+sx
+5:24  Warning: 
+'CheckCircle2' is 
+defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+
+./components/StatusChip
+.tsx
+9:75  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+
+./components/VerticalTi
+meline.tsx
+6:10  Warning: 
+'StatusChip' is 
+defined but never 
+used.  @typescript-esli
+nt/no-unused-vars
+
+./lib/hooks.ts
+19:11  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+20:14  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+42:19  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esli
+nt/no-explicit-any
+
+info  - Need to 
+disable some ESLint 
+rules? Learn more 
+here: https://nextjs.or
+g/docs/app/api-referenc
+e/config/eslint#disabli
+ng-rules

@@ -13,7 +13,7 @@ import {
 import { mapDbStatusToAppointmentStatus } from "@/lib/mock";
 import { useAppointmentsRealtime, useDebouncedValue } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
-import { AppointmentTable } from "@/app/list/AppointmentTable";
+import { AppointmentTable } from "@/list/AppointmentTable";
 import { NewBookingButton } from "@/components/NewBookingButton";
 
 type Filter = "All" | "Today" | "Upcoming" | "No Shows";

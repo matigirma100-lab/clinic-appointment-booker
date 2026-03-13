@@ -12,7 +12,7 @@ import {
   getTodayRange,
 } from "@/lib/mock";
 import { Plus } from "lucide-react";
-import { DashboardSearch } from "@/app/DashboardSearch";
+import { DashboardSearch } from "@/DashboardSearch";
 import { NewBookingButton } from "@/components/NewBookingButton";
 import { BookingModalProvider } from "@/components/BookingModalProvider";
 import { mapDbStatusToAppointmentStatus } from "@/lib/mock";
