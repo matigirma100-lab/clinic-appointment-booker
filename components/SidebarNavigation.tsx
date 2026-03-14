@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { BarChart3, CalendarDays, List, User, Plus, Search, Users, Settings, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/GlassCard";
+import { createBrowserClient } from "@/lib/supabase/client";
 
 const nav = [
   { href: "/", label: "Dashboard", icon: CalendarDays },
@@ -17,10 +18,31 @@ const nav = [
 
 export function SidebarNavigation() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>("admin@clinicflow.com");
+  const [userInitials, setUserInitials] = useState<string>("A");
+  const supabase = createBrowserClient();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user?.email) {
+        setUserEmail(user.email);
+        setUserInitials(user.email.substring(0, 1).toUpperCase());
+      }
+    };
+    fetchUser();
+  }, [supabase.auth]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/login");
+    router.refresh();
+  };
 
   return (
-    <aside 
+    <aside
       className={cn(
         "hidden md:flex md:flex-col shrink-0 border-r border-slate-200/50 bg-white/40 backdrop-blur-xl h-screen sticky top-0 transition-all duration-300 ease-in-out z-50",
         isCollapsed ? "w-20 px-3" : "w-72 px-6"
@@ -55,14 +77,14 @@ export function SidebarNavigation() {
               isCollapsed ? "left-1/2 -translate-x-1/2" : "left-3"
             )} />
             {!isCollapsed && (
-              <input 
-                type="text" 
-                placeholder="Search..." 
+              <input
+                type="text"
+                placeholder="Search..."
                 className="w-full bg-slate-100/50 border border-transparent rounded-xl py-2 pl-10 pr-4 text-sm focus:bg-white focus:border-[#266DF0]/20 focus:ring-4 focus:ring-[#266DF0]/5 outline-none transition-all"
               />
             )}
             {isCollapsed && (
-               <div className="w-10 h-10 rounded-xl bg-slate-100/50 flex items-center justify-center cursor-pointer hover:bg-slate-200/50 transition-colors" />
+              <div className="w-10 h-10 rounded-xl bg-slate-100/50 flex items-center justify-center cursor-pointer hover:bg-slate-200/50 transition-colors" />
             )}
           </div>
         </div>
@@ -118,17 +140,21 @@ export function SidebarNavigation() {
         <div className={cn("flex items-center justify-between gap-3 px-2", isCollapsed ? "flex-col" : "")}>
           <div className={cn("flex items-center gap-3 min-w-0", isCollapsed ? "flex-col" : "")}>
             <div className="h-10 w-10 min-w-[40px] rounded-full bg-slate-900 border border-slate-700/50 flex items-center justify-center overflow-hidden text-white font-bold">
-              N
+              {userInitials}
             </div>
             {!isCollapsed && (
               <div className="flex flex-col min-w-0">
                 <span className="text-sm font-bold text-[#1D1E20] truncate">Admin User</span>
-                <span className="text-[11px] font-medium text-slate-500 truncate">admin@clinicflow.com</span>
+                <span className="text-[11px] font-medium text-slate-500 truncate">{userEmail}</span>
               </div>
             )}
           </div>
           {!isCollapsed && (
-            <button className="text-slate-400 hover:text-red-500 transition-colors shrink-0">
+            <button
+              onClick={handleLogout}
+              className="text-slate-400 hover:text-red-500 transition-colors shrink-0"
+              title="Logout"
+            >
               <LogOut className="h-4 w-4" />
             </button>
           )}
