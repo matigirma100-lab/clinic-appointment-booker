@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus, Trash2, Save, User, Briefcase, Clock, CheckCircle2, AlertCircle, Pencil, Users } from "lucide-react";
+import { Plus, Trash2, Save, User, Briefcase, Clock, CheckCircle2, AlertCircle, Pencil } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/GlassCard";
@@ -29,9 +29,6 @@ export default function SettingsClient() {
   const [isAddingService, setIsAddingService] = useState(false);
   const [newService, setNewService] = useState("");
   const [isSavingService, setIsSavingService] = useState(false);
-
-  const [staffEmail, setStaffEmail] = useState("");
-  const [isInvitingStaff, setIsInvitingStaff] = useState(false);
 
   const fetchSettings = async () => {
     try {
@@ -97,7 +94,7 @@ export default function SettingsClient() {
 
   const addItem = async (type: "doctors" | "services", value: string) => {
     if (!value.trim() || !settings) return;
-
+    
     const trimmed = value.trim();
     if (settings[type].includes(trimmed)) {
       setToast({ message: `${trimmed} already exists`, type: "error" });
@@ -112,29 +109,29 @@ export default function SettingsClient() {
     try {
       const updatedList = [...settings[type], trimmed];
       const updatedSettings = { ...settings, [type]: updatedList };
-
+      
       const res = await fetch("/api/settings", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedSettings),
       });
-
+      
       const result = await res.json();
       if (result.success) {
         setSettings(result.data);
         setValue("");
         setAdding(false);
-        setToast({
-          message: `${type === "doctors" ? "Doctor" : "Service"} added successfully`,
-          type: "success"
+        setToast({ 
+          message: `${type === "doctors" ? "Doctor" : "Service"} added successfully`, 
+          type: "success" 
         });
       } else {
         throw new Error(result.error);
       }
     } catch (error: any) {
-      setToast({
-        message: error.message || `Failed to save ${type === "doctors" ? "doctor" : "service"}`,
-        type: "error"
+      setToast({ 
+        message: error.message || `Failed to save ${type === "doctors" ? "doctor" : "service"}`, 
+        type: "error" 
       });
     } finally {
       setSaving(false);
@@ -161,32 +158,6 @@ export default function SettingsClient() {
     });
   };
 
-  const inviteStaff = async () => {
-    if (!staffEmail.trim()) {
-      setToast({ message: "Email is required", type: "error" });
-      return;
-    }
-    setIsInvitingStaff(true);
-    try {
-      const res = await fetch("/api/staff/invite", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: staffEmail.trim() }),
-      });
-      const result = await res.json();
-      if (result.success) {
-        setToast({ message: `Invitation sent to ${staffEmail}`, type: "success" });
-        setStaffEmail("");
-      } else {
-        throw new Error(result.error);
-      }
-    } catch (error: any) {
-      setToast({ message: error.message || "Failed to invite staff", type: "error" });
-    } finally {
-      setIsInvitingStaff(false);
-    }
-  };
-
   if (loading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
@@ -205,7 +176,7 @@ export default function SettingsClient() {
           <h3 className="text-lg font-bold text-slate-900">Connection Issue</h3>
           <p className="text-sm text-slate-500">We couldn't reach the settings service.</p>
         </div>
-        <button
+        <button 
           onClick={fetchSettings}
           className="px-6 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-sm font-bold transition-all"
         >
@@ -459,42 +430,6 @@ export default function SettingsClient() {
             </div>
           </GlassCard>
         </div>
-
-        {/* Staff Users Section */}
-        <div className="md:col-span-2 space-y-4">
-          <div className="flex items-center gap-2 text-slate-900 px-1">
-            <Users className="h-4 w-4 text-purple-500" />
-            <h2 className="text-sm font-bold uppercase tracking-wider">Staff Users (Admin Only)</h2>
-          </div>
-          <GlassCard className="p-6">
-            <div className="space-y-4">
-              <p className="text-sm text-slate-500">
-                Invite new staff members by email. They will receive a link to set their password and log in.
-              </p>
-              <div className="flex max-w-md gap-3">
-                <input
-                  type="email"
-                  placeholder="staff@clinicflow.com"
-                  value={staffEmail}
-                  onChange={(e) => setStaffEmail(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && inviteStaff()}
-                  className="flex-1 bg-white/40 border border-slate-200/50 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-purple-500/20"
-                />
-                <button
-                  onClick={inviteStaff}
-                  disabled={isInvitingStaff}
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-purple-600 px-6 py-2.5 text-sm font-bold text-white shadow-md hover:bg-purple-700 active:scale-95 transition-all disabled:opacity-50 disabled:active:scale-100"
-                >
-                  {isInvitingStaff ? (
-                    <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  ) : (
-                    "Invite Staff"
-                  )}
-                </button>
-              </div>
-            </div>
-          </GlassCard>
-        </div>
       </div>
 
       {/* Mini Toast Notification */}
@@ -506,8 +441,8 @@ export default function SettingsClient() {
             exit={{ opacity: 0, scale: 0.9 }}
             className={cn(
               "fixed bottom-8 left-1/2 -translate-x-1/2 z-[200] px-4 py-2 rounded-full shadow-2xl border flex items-center gap-2 text-sm font-semibold whitespace-nowrap",
-              toast.type === "success"
-                ? "bg-emerald-50 border-emerald-200 text-emerald-800"
+              toast.type === "success" 
+                ? "bg-emerald-50 border-emerald-200 text-emerald-800" 
                 : "bg-red-50 border-red-200 text-red-800"
             )}
           >
