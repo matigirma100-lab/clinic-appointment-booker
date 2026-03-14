@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 Clinic Appointment Booker
 
-## Getting Started
+A modern, full-stack clinic management and appointment booking system built with **Next.js 15**, **Supabase**, and **Tailwind CSS v4**. Designed with a premium, minimal UI inspired by Linear and Attio.
 
-First, run the development server:
+## ✨ Features
+
+- **Dashboard** — Live stats (today's appointments, patients, revenue), vertical timeline of upcoming appointments, and quick-action buttons
+- **Appointment List** — Sortable, filterable table with TanStack Table, status chips, and row actions (edit, delete, remind)
+- **New Appointment Modal** — Glassy bottom-sheet modal with full form validation (patient, service, doctor, date/time)
+- **Doctor Schedule** — Weekly calendar view of doctor availability
+- **Settings** — Manage doctors, services, and clinic hours
+- **Reports** — Analytics and charting with Recharts
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Styling | Tailwind CSS v4 |
+| Animations | Framer Motion |
+| Database | Supabase (PostgreSQL) |
+| Tables | TanStack Table v8 |
+| Icons | Lucide React |
+| Charts | Recharts |
+| Language | TypeScript |
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- A [Supabase](https://supabase.com) project
+
+### Installation
+
+```bash
+git clone https://github.com/matigirma100-lab/clinic-appointment-booker.git
+cd clinic-appointment-booker
+npm install
+```
+
+### Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in your Supabase credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### Running Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is optimized for deployment on **Vercel**.
 
-## Learn More
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/matigirma100-lab/clinic-appointment-booker)
 
-To learn more about Next.js, take a look at the following resources:
+After deploying, add the environment variables in the Vercel dashboard under **Project Settings → Environment Variables**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+clinic-appointment-booker/
+├── app/                    # Next.js App Router pages & layouts
+│   ├── (dashboard)/        # Dashboard route group
+│   ├── list/               # Appointment list page
+│   ├── schedule/           # Doctor schedule page
+│   ├── reports/            # Reports & analytics page
+│   └── settings/           # Settings management page
+├── components/             # Reusable UI components
+│   ├── ui/                 # Base UI components
+│   └── ...
+├── lib/                    # Supabase client, utilities
+└── public/                 # Static assets
+```
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

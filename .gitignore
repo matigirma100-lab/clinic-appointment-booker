@@ -32,6 +32,14 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# local debug/output files
+build_output.txt
+build_output_utf8.txt
+
+# product requirements (local only)
+PRD
 
 # vercel
 .vercel
