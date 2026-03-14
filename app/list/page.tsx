@@ -1,5 +1,5 @@
 import { PageContainer } from "@/components/PageContainer";
-import { ListClient } from "@/list/ListClient";
+import { ListClient } from "@/app/list/ListClient";
 
 export default function ListPage() {
   return (

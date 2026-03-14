@@ -1,5 +1,5 @@
 import { PageContainer } from "@/components/PageContainer";
-import { DoctorScheduleClient } from "@/doctor/[name]/DoctorScheduleClient";
+import { DoctorScheduleClient } from "@/app/doctor/[name]/DoctorScheduleClient";
 
 export default async function DoctorPage({
   params,
